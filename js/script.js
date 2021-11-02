@@ -21,11 +21,18 @@ con difficoltà 3 => tra 1 e 49   7x7
         quante iterazioni deve fare
 
 -creo un event listener click al pulsante easy
-    -vado a inserire la funzione del ciclo mettendo i parametri di 100 iterazioni
+    -vado a inserire la funzione del ciclo mettendo i parametri di 100 iterazioni e la classe specifica
+    -vado a disabilitare gli altri pulsanti
+
 -creo un event listener click al pulsante medium
-    -vado a inserire la funzione del ciclo mettendo i parametri di 81 iterazioni
+    -vado a inserire la funzione del ciclo mettendo i parametri di 81 iterazioni e la classe specifica
+    -vado a disabilitare gli altri pulsanti
+
 -creo un event listener click al pulsante hard
-    -vado a inserire la funzione del ciclo mettendo i parametri di 49 iterazioni
+    -vado a inserire la funzione del ciclo mettendo i parametri di 49 iterazioni e la classe specifica
+    -vado a disabilitare gli altri pulsanti
+
+-creo un event listener per il pulsante reset che mi reloadi la pagina per selezionare un'altro livello
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 potrei anche creare una funzione con i parametri che posso cambiare in base al pulsante premuto e alle iterazioni che deve fare
@@ -37,15 +44,15 @@ const sqrCont = document.getElementById("sqr-container");
 const esBtn = document.getElementById("easy-btn")
 const mdBtn = document.getElementById("medium-btn")
 const hrBtn = document.getElementById("hard-btn")
-
-/* let cicleEasy = cicleLimited (100, "sqr-easy");
-let cicleMedium = cicleLimited (81, "sqr-medium");
-let cicleHard = cicleLimited (49, "sqr-hard"); */
+const resBtn = document.getElementById("reset-btn")
 
 
 esBtn.addEventListener("click",
     function(){
         let cicleEasy = cicleLimited (100, "sqr-easy");
+        esBtn.classList.add("active")
+        mdBtn.setAttribute("disabled", "")
+        hrBtn.setAttribute("disabled", "")
         return cicleEasy;
     }
 )
@@ -53,6 +60,9 @@ esBtn.addEventListener("click",
 mdBtn.addEventListener("click",
     function(){
         let cicleMedium = cicleLimited (81, "sqr-medium");
+        mdBtn.classList.add("active")
+        esBtn.setAttribute("disabled", "")
+        hrBtn.setAttribute("disabled", "")
         return cicleMedium;
     }
 )
@@ -60,7 +70,16 @@ mdBtn.addEventListener("click",
 hrBtn.addEventListener("click",
     function(){
         let cicleHard = cicleLimited (49, "sqr-hard");
+        hrBtn.classList.add("active")
+        esBtn.setAttribute("disabled", "")
+        mdBtn.setAttribute("disabled", "")
         return cicleHard;
+    }
+)
+
+resBtn.addEventListener("click",
+    function(){
+        location.reload();
     }
 )
 
