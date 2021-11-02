@@ -41,62 +41,69 @@ potrei anche creare una funzione con i parametri che posso cambiare in base al p
 */
 
 const sqrCont = document.getElementById("sqr-container");
-const esBtn = document.getElementById("easy-btn")
-const mdBtn = document.getElementById("medium-btn")
-const hrBtn = document.getElementById("hard-btn")
-const resBtn = document.getElementById("reset-btn")
+const esBtn = document.getElementById("easy-btn");
+const mdBtn = document.getElementById("medium-btn");
+const hrBtn = document.getElementById("hard-btn");
+const resBtn = document.getElementById("reset-btn");
 
 
 esBtn.addEventListener("click",
     function(){
         let cicleEasy = cicleLimited (100, "sqr-easy");
-        esBtn.classList.add("active")
-        mdBtn.setAttribute("disabled", "")
-        hrBtn.setAttribute("disabled", "")
+        esBtn.classList.add("active");
+        esBtn.setAttribute("disabled", "");
+        mdBtn.setAttribute("disabled", "");
+        hrBtn.setAttribute("disabled", "");
         return cicleEasy;
     }
-)
+);
 
 mdBtn.addEventListener("click",
     function(){
         let cicleMedium = cicleLimited (81, "sqr-medium");
-        mdBtn.classList.add("active")
-        esBtn.setAttribute("disabled", "")
-        hrBtn.setAttribute("disabled", "")
+        mdBtn.classList.add("active");
+        mdBtn.setAttribute("disabled", "");
+        esBtn.setAttribute("disabled", "");
+        hrBtn.setAttribute("disabled", "");
         return cicleMedium;
     }
-)
+);
 
 hrBtn.addEventListener("click",
     function(){
         let cicleHard = cicleLimited (49, "sqr-hard");
-        hrBtn.classList.add("active")
-        esBtn.setAttribute("disabled", "")
-        mdBtn.setAttribute("disabled", "")
+        hrBtn.classList.add("active");
+        hrBtn.setAttribute("disabled", "");
+        esBtn.setAttribute("disabled", "");
+        mdBtn.setAttribute("disabled", "");
         return cicleHard;
     }
-)
+);
 
 resBtn.addEventListener("click",
     function(){
         location.reload();
     }
-)
+);
 
 
 
 
 
 function cicleLimited (cicles, classAssign2){
-    for(i=0; i<cicles; i++){
+    for(i=1; i<=cicles; i++){
         let eleDiv = elementGenerator ("div", classAssign2);
+        let eleSpan = elementGenerator ("span", "dnone");
         sqrCont.append(eleDiv);
-        console.log(eleDiv);
+        eleDiv.append(eleSpan);
+        eleSpan.append(i);
+        /* console.log(eleDiv); */
 
         eleDiv.addEventListener("click",
             function(){
-                eleDiv.classList.add("active")
-                console.log(eleDiv);
+                eleDiv.classList.add("active");
+                eleSpan.classList.remove("dnone");
+                /* console.log(eleDiv); */
             }
         );
     } 
