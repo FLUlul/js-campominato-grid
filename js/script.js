@@ -41,59 +41,54 @@ potrei anche creare una funzione con i parametri che posso cambiare in base al p
 */
 
 const sqrCont = document.getElementById("sqr-container");
-const esBtn = document.getElementById("easy-btn");
-const mdBtn = document.getElementById("medium-btn");
-const hrBtn = document.getElementById("hard-btn");
-const resBtn = document.getElementById("reset-btn");
+const easyBtn = document.getElementById("easy-btn");
+const mediumBtn = document.getElementById("medium-btn");
+const hardBtn = document.getElementById("hard-btn");
+const resetBtn = document.getElementById("reset-btn");
 
-
-esBtn.addEventListener("click",
+easyBtn.addEventListener("click",
     function(){
-        let cicleEasy = cicleLimited (100, "sqr-easy");
-        esBtn.classList.add("active");
-        esBtn.setAttribute("disabled", "");
-        mdBtn.setAttribute("disabled", "");
-        hrBtn.setAttribute("disabled", "");
+        let cicleEasy = generateSquares(100, "sqr-easy");
+        easyBtn.classList.add("active");
+        buttonDisable (easyBtn, mediumBtn, hardBtn);
         return cicleEasy;
     }
 );
 
-mdBtn.addEventListener("click",
+mediumBtn.addEventListener("click",
     function(){
-        let cicleMedium = cicleLimited (81, "sqr-medium");
-        mdBtn.classList.add("active");
-        mdBtn.setAttribute("disabled", "");
-        esBtn.setAttribute("disabled", "");
-        hrBtn.setAttribute("disabled", "");
+        let cicleMedium = generateSquares(81, "sqr-medium");
+        mediumBtn.classList.add("active");
+        buttonDisable (easyBtn, mediumBtn, hardBtn);
         return cicleMedium;
     }
 );
 
-hrBtn.addEventListener("click",
+hardBtn.addEventListener("click",
     function(){
-        let cicleHard = cicleLimited (49, "sqr-hard");
-        hrBtn.classList.add("active");
-        hrBtn.setAttribute("disabled", "");
-        esBtn.setAttribute("disabled", "");
-        mdBtn.setAttribute("disabled", "");
+        let cicleHard = generateSquares(49, "sqr-hard");
+        hardBtn.classList.add("active");
+        buttonDisable (easyBtn, mediumBtn, hardBtn);
         return cicleHard;
     }
 );
 
-resBtn.addEventListener("click",
+resetBtn.addEventListener("click",
     function(){
         location.reload();
     }
 );
 
+function buttonDisable (buttonOne, buttonTwo, buttonThree){
+    buttonOne.setAttribute("disabled", "");
+    buttonTwo.setAttribute("disabled", "");
+    buttonThree.setAttribute("disabled", "");
+}
 
-
-
-
-function cicleLimited (cicles, classAssign2){
-    for(i=1; i<=cicles; i++){
-        let eleDiv = elementGenerator ("div", classAssign2);
-        let eleSpan = elementGenerator ("span", "dnone");
+function generateSquares(maxCicles, defaultClass){
+    for(i=1; i<=maxCicles; i++){
+        let eleDiv = elementGenerator("div", defaultClass);
+        let eleSpan = elementGenerator("span", "dnone");
         sqrCont.append(eleDiv);
         eleDiv.append(eleSpan);
         eleSpan.append(i);
@@ -111,9 +106,9 @@ function cicleLimited (cicles, classAssign2){
 }
 
 
-function elementGenerator (eleGen, classAssign){
-    let square = document.createElement(eleGen);
-    square.classList.add(classAssign);
-    return square;
+function elementGenerator(element, className){
+    let item = document.createElement(element);
+    item.classList.add(className);
+    return item;
 }
 

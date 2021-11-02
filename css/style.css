@@ -11,9 +11,7 @@ body{
 .dnone{
     display: none;
 }
-.dblock{
-    display: block;
-}
+
 
 .diff-select{
     margin: 20px auto;
