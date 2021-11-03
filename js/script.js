@@ -105,7 +105,6 @@ function generateSquares(maxCicles, defaultClass){
     
 }
 
-
 function elementGenerator(element, className){
     let item = document.createElement(element);
     item.classList.add(className);
